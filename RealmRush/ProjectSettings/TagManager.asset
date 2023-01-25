@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ballistas
   - Weapon
+  - Path
   layers:
   - Default
   - TransparentFX
