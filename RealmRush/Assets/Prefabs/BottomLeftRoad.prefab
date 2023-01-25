@@ -57,11 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 52555525245331815, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}
       propertyPath: m_Name
-      value: CornerRoad
+      value: BottomLeftRoad
       objectReference: {fileID: 0}
     - target: {fileID: 433672055436291078, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -2432090755550338912, guid: 626410dc07212d749823da2540a223bb, type: 3}
+    - target: {fileID: 2147171832785887979, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}
+      propertyPath: isNotPlaceable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}

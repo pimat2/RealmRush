@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1050504712970075716, guid: dca2793a7830cea48a0e817e72949c5d, type: 3}
+      propertyPath: isNotPlaceable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1432949418295981512, guid: dca2793a7830cea48a0e817e72949c5d, type: 3}
       propertyPath: m_Name
       value: RoadSideways
