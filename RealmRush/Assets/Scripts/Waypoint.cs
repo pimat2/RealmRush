@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    [SerializeField] bool isNotPlaceable;
+    
     [SerializeField] GameObject ballista;
+    [SerializeField] bool isNotPlaceable;
+    public bool IsNotPlaceable{ get { return isNotPlaceable; } }
     GameObject parentGameObject;
     void Start() {
         parentGameObject = GameObject.FindWithTag("Ballistas");    
@@ -21,4 +23,5 @@ public class Waypoint : MonoBehaviour
             Debug.Log(transform.name);
         }
    }
+   
 }
