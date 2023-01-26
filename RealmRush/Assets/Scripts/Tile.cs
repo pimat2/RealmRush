@@ -25,17 +25,13 @@ public class Tile : MonoBehaviour
     }
     void OnMouseDown() {
         if(gridManager.GetNode(coordinates).isWalkable && !pathFinder.WillBlockPath(coordinates)){
-             bool isPlaced = ballista.CreateTower(ballista, transform.position);
-             isNotPlaceable = isPlaced;
-             gridManager.BlockNode(coordinates);
+             bool isSuccessfull = ballista.CreateTower(ballista, transform.position);
+             if(isSuccessfull){
+                gridManager.BlockNode(coordinates);
+                pathFinder.NotifyReceivers();
+             }
+             
         }
-        // if(isNotPlaceable){
-        //     return;
-        // }
-        // else{
-        //     bool isPlaced =  ballista.CreateTower(ballista, transform.position);
-        //     isNotPlaceable = isPlaced;
-        // }
    }
    
 }

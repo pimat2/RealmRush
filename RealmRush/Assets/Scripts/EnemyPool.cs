@@ -9,6 +9,7 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] GameObject enemyRam;
     [SerializeField][Range(0.1f, 30f)] float enemySpawnRate = 1f;
     GameObject enemyPool;
+    Vector3 enemySpawnPosition = new Vector3(0,3,0);
     // Start is called before the first frame update
     void Awake() {
       PopulatePool();  
@@ -21,7 +22,7 @@ public class EnemyPool : MonoBehaviour
         pool = new GameObject[poolSize];
         for (int i = 0; i < pool.Length; i++)
         {
-            pool[i] = Instantiate(enemyRam, transform);
+            pool[i] = Instantiate(enemyRam, enemySpawnPosition, Quaternion.identity);
             pool[i].SetActive(false);
         }
     }

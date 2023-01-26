@@ -6,7 +6,9 @@ public class PathFinder : MonoBehaviour
 {
 
     [SerializeField] Vector2Int startCoordinates;
+    public Vector2Int StartCoordinates{ get{ return startCoordinates; } }
     [SerializeField] Vector2Int endCoordinates;
+    public Vector2Int EndCoordinates{ get{ return endCoordinates; } }
     
     
     Node startNode;
@@ -25,6 +27,9 @@ public class PathFinder : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         if(gridManager != null){
             grid = gridManager.Grid;
+            startNode = grid[startCoordinates];
+            endNode = grid[endCoordinates];
+            
         }
             
     }
@@ -32,8 +37,7 @@ public class PathFinder : MonoBehaviour
 
     void Start()
     {
-        startNode = gridManager.Grid[startCoordinates];
-        endNode = gridManager.Grid[endCoordinates];
+        
         GetNewPath();
     }
 
@@ -65,6 +69,8 @@ public class PathFinder : MonoBehaviour
     }
 
     void BreathFirstSearch(){
+        startNode.isWalkable = true;
+        endNode.isWalkable = true;
         frontier.Clear();
         reached.Clear();
         bool isRunning = true;
@@ -113,5 +119,9 @@ public class PathFinder : MonoBehaviour
             
         }
         return false; 
+    }
+
+    public void NotifyReceivers(){
+        BroadcastMessage("RecalculatePath",SendMessageOptions.DontRequireReceiver);
     }
 }

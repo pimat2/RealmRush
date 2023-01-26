@@ -5,40 +5,37 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField][Range(0f, 5f)] float enemySpeed = 2f;
-    [SerializeField] List<Tile> path = new List<Tile>();
+    List<Node> path = new List<Node>();
     Enemy enemy;
-    void Start() {
+    GridManager gridManager;
+    PathFinder pathFinder;
+    void Awake() {
+        gridManager = FindObjectOfType<GridManager>();
+        pathFinder = FindObjectOfType<PathFinder>();
         enemy = GetComponent<Enemy>();    
     }
     void OnEnable()
     {
-        FindPath();
+        RecalculatePath();
         ReturnToStart();
         StartCoroutine(FollowPath());
     }
-    void FindPath(){
+    void RecalculatePath(){
         path.Clear();
-        GameObject parent = GameObject.FindGameObjectWithTag("Path");
-        foreach (Transform child in parent.transform)
-        {
-            Tile waypoint = child.GetComponent<Tile>();
-            if(waypoint != null){
-                path.Add(waypoint);
-            }
-        }   
+        path = pathFinder.GetNewPath();
     }
     void ReturnToStart(){
-        transform.position = path[0].transform.position;
+        transform.position = gridManager.GetPositionFromCoordinates(pathFinder.StartCoordinates);
     }
     void FinishPath(){
         enemy.StealGold();
         gameObject.SetActive(false);
     }
     IEnumerator FollowPath(){
-        foreach (Tile waypoint in path)
+        for(int i = 0; i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
-            Vector3 waypointPosition = new Vector3(waypoint.transform.position.x,3,waypoint.transform.position.z);
+            Vector3 waypointPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
             float travelPercent = 0f;
             transform.LookAt(waypointPosition);
             while(travelPercent < 1f){
