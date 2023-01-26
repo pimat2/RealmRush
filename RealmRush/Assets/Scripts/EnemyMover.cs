@@ -14,15 +14,26 @@ public class EnemyMover : MonoBehaviour
         pathFinder = FindObjectOfType<PathFinder>();
         enemy = GetComponent<Enemy>();    
     }
+    
     void OnEnable()
     {
-        RecalculatePath();
         ReturnToStart();
-        StartCoroutine(FollowPath());
+        RecalculatePath(true);
     }
-    void RecalculatePath(){
+
+    void RecalculatePath(bool resetPath){
+        Vector2Int coordinates = new Vector2Int();
+
+        if(resetPath){
+            coordinates = pathFinder.StartCoordinates;
+        }
+        else{
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
+        }
+        StopAllCoroutines();
         path.Clear();
-        path = pathFinder.GetNewPath();
+        path = pathFinder.GetNewPath(coordinates);
+        StartCoroutine(FollowPath());
     }
     void ReturnToStart(){
         transform.position = gridManager.GetPositionFromCoordinates(pathFinder.StartCoordinates);
@@ -32,7 +43,7 @@ public class EnemyMover : MonoBehaviour
         gameObject.SetActive(false);
     }
     IEnumerator FollowPath(){
-        for(int i = 0; i < path.Count; i++)
+        for(int i = 1; i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
             Vector3 waypointPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);

@@ -22543,6 +22543,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7252588906603117808, guid: fe451b7f6b409e943af97521f37946cc, type: 3}
+      propertyPath: startingBalance
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 7252588906603117809, guid: fe451b7f6b409e943af97521f37946cc, type: 3}
       propertyPath: m_RootOrder
       value: 6
