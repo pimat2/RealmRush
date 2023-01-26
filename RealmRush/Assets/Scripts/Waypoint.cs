@@ -19,8 +19,6 @@ public class Waypoint : MonoBehaviour
         else{
             bool isPlaced =  ballista.CreateTower(ballista, transform.position);
             isNotPlaceable = isPlaced;
-            ballista.transform.parent = parentGameObject.transform;
-            Debug.Log(transform.name);
         }
    }
    

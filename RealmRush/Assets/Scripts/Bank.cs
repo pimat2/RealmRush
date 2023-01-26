@@ -19,6 +19,9 @@ public class Bank : MonoBehaviour
         if(currentBalance < 0){
             ReloadScene();
         }
+        else if(currentBalance >= 1000){
+            //win the game
+        }
     }
     void ReloadScene(){
         Scene currentScene = SceneManager.GetActiveScene();
