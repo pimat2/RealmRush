@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
-    [SerializeField] int poolSize = 5;
+    [SerializeField][Range(0, 50)] int poolSize = 5;
     GameObject[] pool;
     [SerializeField] GameObject enemyRam;
-    [SerializeField] float enemySpawnRate = 1f;
+    [SerializeField][Range(0.1f, 30f)] float enemySpawnRate = 1f;
     GameObject enemyPool;
     // Start is called before the first frame update
     void Awake() {
@@ -43,7 +43,7 @@ public class EnemyPool : MonoBehaviour
     IEnumerator InstantiateEnemy(){
         while(true){
             EnableObjectInPool();
-            yield return new WaitForSeconds(enemySpawnRate);
+            yield return new WaitForSeconds(Mathf.Abs(enemySpawnRate));
         }
         
     }
