@@ -16248,7 +16248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685f85f703de6c84bb8ca5f04eddf5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 4, y: 3}
+  gridSize: {x: 9, y: 6}
 --- !u!4 &1581230247
 Transform:
   m_ObjectHideFlags: 0
@@ -19220,6 +19220,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}
+--- !u!1 &1855089154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1893754445300273186, guid: 843a5c85d6269f246815f72cde8dc6dc, type: 3}
+  m_PrefabInstance: {fileID: 1893754443579718176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1855089157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855089154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66458a3e7e5c9dd4db28463b0f770456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoordinates: {x: 0, y: 0}
+  endCoordinates: {x: 5, y: 3}
 --- !u!4 &1859451077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 52555525245331812, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}
