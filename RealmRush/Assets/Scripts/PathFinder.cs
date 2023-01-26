@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
+
     [SerializeField] Vector2Int startCoordinates;
     [SerializeField] Vector2Int endCoordinates;
     
@@ -23,12 +24,14 @@ public class PathFinder : MonoBehaviour
         if(gridManager != null){
             grid = gridManager.Grid;
         }
-        startNode = new Node(startCoordinates, true);
-        endNode = new Node(endCoordinates, true);    
+            
     }
     void Start()
     {
+        startNode = gridManager.Grid[startCoordinates];
+        endNode = gridManager.Grid[endCoordinates];
         BreathFirstSearch();
+        BuildPath();
     }
     void ExploreNeighbors(){
         List<Node> neighbors = new List<Node>();
@@ -42,11 +45,13 @@ public class PathFinder : MonoBehaviour
         foreach (Node neighbor in neighbors)
         {
             if(!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable){
+                neighbor.connectedTo = currentSearchNode;
                 reached.Add(neighbor.coordinates, neighbor);
                 frontier.Enqueue(neighbor);
             }
         }
     }
+
     void BreathFirstSearch(){
         bool isRunning = true;
         frontier.Enqueue(startNode);
@@ -59,5 +64,20 @@ public class PathFinder : MonoBehaviour
                 isRunning = false;
             }
         }
+    }
+    List<Node> BuildPath(){
+        List<Node> path = new List<Node>();
+        Node currentNode = endNode;
+
+        path.Add(currentNode);
+        currentNode.isPath = true;
+
+        while(currentNode.connectedTo != null){
+            currentNode = currentNode.connectedTo;
+            path.Add(currentNode);
+            currentNode.isPath = true;
+        } 
+        path.Reverse();
+        return path;
     }
 }
