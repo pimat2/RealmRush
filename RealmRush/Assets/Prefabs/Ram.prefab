@@ -131,26 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dfc5fc45ec9b84da1ac648f6c86f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 2
-  path:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemySpeed: 1
 --- !u!65 &-7964416083343974380
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -177,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHtPoints: 5
+  difficultyRamp: 1
 --- !u!114 &-8301617051826896193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b364bbec73a30943b8939ab3a79c2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldReward: 25
+  goldPenalty: 25
+  bank: {fileID: 0}
