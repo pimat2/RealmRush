@@ -19,6 +19,8 @@ public class PathFinder : MonoBehaviour
     Vector2Int[] directions = {Vector2Int.right, Vector2Int.left, Vector2Int.up, Vector2Int.down};
     GridManager gridManager;
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
+    
+    
     void Awake() {
         gridManager = FindObjectOfType<GridManager>();
         if(gridManager != null){
@@ -26,13 +28,23 @@ public class PathFinder : MonoBehaviour
         }
             
     }
+
+
     void Start()
     {
         startNode = gridManager.Grid[startCoordinates];
         endNode = gridManager.Grid[endCoordinates];
-        BreathFirstSearch();
-        BuildPath();
+        GetNewPath();
     }
+
+
+    public List<Node> GetNewPath(){
+        gridManager.ResetNodes();
+        BreathFirstSearch();
+        return BuildPath();
+    }
+
+
     void ExploreNeighbors(){
         List<Node> neighbors = new List<Node>();
         foreach (Vector2Int direction in directions)
@@ -53,9 +65,14 @@ public class PathFinder : MonoBehaviour
     }
 
     void BreathFirstSearch(){
+        frontier.Clear();
+        reached.Clear();
         bool isRunning = true;
         frontier.Enqueue(startNode);
         reached.Add(startCoordinates, startNode);
+        
+        
+        
         while(frontier.Count > 0 && isRunning){
             currentSearchNode = frontier.Dequeue();
             currentSearchNode.isExplored = true;
@@ -79,5 +96,22 @@ public class PathFinder : MonoBehaviour
         } 
         path.Reverse();
         return path;
+    }
+
+    public bool WillBlockPath(Vector2Int coordinates){
+        if(grid.ContainsKey(coordinates)){
+            bool previousState = grid[coordinates].isWalkable;
+
+            grid[coordinates].isWalkable = false;
+            List<Node> newPath = GetNewPath();
+            grid[coordinates].isWalkable = previousState;
+
+            if(newPath.Count <= 1){
+                GetNewPath();
+                return true;
+            }
+            
+        }
+        return false; 
     }
 }

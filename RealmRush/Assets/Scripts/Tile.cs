@@ -9,8 +9,10 @@ public class Tile : MonoBehaviour
     [SerializeField] bool isNotPlaceable;
     public bool IsNotPlaceable{ get { return isNotPlaceable; } }
     GridManager gridManager;
+    PathFinder pathFinder;
     Vector2Int coordinates = new Vector2Int();
     void Awake() {
+        pathFinder = FindObjectOfType<PathFinder>();
         gridManager = FindObjectOfType<GridManager>();
     }
     void Start() {
@@ -22,13 +24,18 @@ public class Tile : MonoBehaviour
         }    
     }
     void OnMouseDown() {
-        if(isNotPlaceable){
-            return;
+        if(gridManager.GetNode(coordinates).isWalkable && !pathFinder.WillBlockPath(coordinates)){
+             bool isPlaced = ballista.CreateTower(ballista, transform.position);
+             isNotPlaceable = isPlaced;
+             gridManager.BlockNode(coordinates);
         }
-        else{
-            bool isPlaced =  ballista.CreateTower(ballista, transform.position);
-            isNotPlaceable = isPlaced;
-        }
+        // if(isNotPlaceable){
+        //     return;
+        // }
+        // else{
+        //     bool isPlaced =  ballista.CreateTower(ballista, transform.position);
+        //     isNotPlaceable = isPlaced;
+        // }
    }
    
 }
