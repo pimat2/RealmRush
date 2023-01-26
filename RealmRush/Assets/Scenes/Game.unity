@@ -16249,6 +16249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: {x: 9, y: 6}
+  unityGridSize: 10
 --- !u!4 &1581230247
 Transform:
   m_ObjectHideFlags: 0
@@ -19238,7 +19239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startCoordinates: {x: 0, y: 0}
-  endCoordinates: {x: 3, y: 3}
+  endCoordinates: {x: 8, y: 5}
 --- !u!4 &1859451077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 52555525245331812, guid: 6e43eb0da265bef4bb8462b2c5417fe7, type: 3}
@@ -22408,6 +22409,10 @@ PrefabInstance:
     - target: {fileID: 1893754445300273186, guid: 843a5c85d6269f246815f72cde8dc6dc, type: 3}
       propertyPath: m_Name
       value: EnemyPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893754445300273187, guid: 843a5c85d6269f246815f72cde8dc6dc, type: 3}
+      propertyPath: poolSize
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1893754445300273188, guid: 843a5c85d6269f246815f72cde8dc6dc, type: 3}
       propertyPath: m_RootOrder

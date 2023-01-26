@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField][Range(0f, 5f)] float enemySpeed = 2f;
-    [SerializeField] List<Waypoint> path = new List<Waypoint>();
+    [SerializeField] List<Tile> path = new List<Tile>();
     Enemy enemy;
     void Start() {
         enemy = GetComponent<Enemy>();    
@@ -21,7 +21,7 @@ public class EnemyMover : MonoBehaviour
         GameObject parent = GameObject.FindGameObjectWithTag("Path");
         foreach (Transform child in parent.transform)
         {
-            Waypoint waypoint = child.GetComponent<Waypoint>();
+            Tile waypoint = child.GetComponent<Tile>();
             if(waypoint != null){
                 path.Add(waypoint);
             }
@@ -35,7 +35,7 @@ public class EnemyMover : MonoBehaviour
         gameObject.SetActive(false);
     }
     IEnumerator FollowPath(){
-        foreach (Waypoint waypoint in path)
+        foreach (Tile waypoint in path)
         {
             Vector3 startPosition = transform.position;
             Vector3 waypointPosition = new Vector3(waypoint.transform.position.x,3,waypoint.transform.position.z);
